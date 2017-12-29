@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+	<head>
+		<title>My Forum</title>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+	    
+	</head>
+	<body>
+
+		<div th:include="menu"></div>
+				
+		<div class="list-group">
+  			<div th:each="topic : ${topics}" class="list-group-item list-group-item-action flex-column align-items-start">
+    			
+    			<div class="d-flex w-100 justify-content-between">
+      				<h5 class="mb-1" th:inline="text"><a th:href="@{/detailTopic(id=${topic.id})}">[[${topic.title}]]</a></h5>
+      				<small th:inline="text">[[${topic.totalPosts}]] [[${topic.totalPosts>1} ? 'replies' : 'reply']]</small>	
+    			</div>
+    			<p class="mb-1" th:text="${topic.text}"></p>
+    			<small class="text-muted" th:inline="text"><b>Created by</b> [[${topic.author.name}]] at [[${topic.creationDate}]] | Views: [[${topic.totalViews}]]</small>
+  			</div>
+	  		<div style="padding: 1.5rem;">
+		        <a class="btn btn-primary" th:href="@{/newTopic}">Ask a question</a>
+		    </div>		
+  		</div>
+	</body>
+</html>

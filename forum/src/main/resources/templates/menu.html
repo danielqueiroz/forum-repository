@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+	<head>
+		<title>My Forum</title>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+	    
+	</head>
+
+  	<body>
+  
+    	<nav th:fragment="menu" class="navbar navbar-expand-lg navbar-dark bg-dark"
+			style="margin: 0px 0;">
+			<a class="navbar-brand" href="javascript:void(0)">My Forum</a>
+			<button class="navbar-toggler navbar-toggler-right" type="button"
+				data-toggle="collapse" data-target="#navb">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+	
+			<div class="collapse navbar-collapse" id="navb">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item"><a class="nav-link" th:href="@{/findTopicByFilter}">Home</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/newTopic}">Ask a question</a></li>
+					<li class="nav-item" sec:authorize="isAnonymous()">
+						<form id="login" th:action="@{/loginForm}" method="post">
+							<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+							<a class="nav-link" href="javascript:document.getElementById('login').submit()">Sign In</a>
+						</form>
+					</li>	
+					<li class="nav-item" sec:authorize="isAuthenticated()">
+						<form id="logout" th:action="@{/logout}" method="post">
+							<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+							<a class="nav-link" href="javascript:document.getElementById('logout').submit()">Sign Out</a>
+						</form>
+					</li>	
+				</ul>
+				<form class="form-inline my-2 my-lg-0" th:action="@{/findTopicByFilter}" id="searchForm" method="POST">
+					<input class="form-control mr-sm-2"  type="text" th:name="filter" placeholder="Search"/>
+					<button class="btn btn-success my-2 my-sm-0" type="button" onclick="document.getElementById('searchForm').submit()">Search</button>
+				</form>
+			</div>
+		</nav>
+  
+  </body>
+  
+</html>

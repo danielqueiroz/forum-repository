@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Meu Forum</title>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+    
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-8">
+	  			<div class="form-group">
+				  <label for="usr">Name:</label>
+				  <input type="text" class="form-control" id="usr"/>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<br/>
+				<button type="button" class="btn btn-primary">Search</button>
+			</div>	
+					
+		</div>
+	    <p th:text="'Hello, ' + ${name} + '!'" />
+	    
+	    <div class="btn-group">
+	    	<button type="button" class="btn btn-success">This is a success button</button>
+	    	<button type="button" class="btn btn-warning">This is a warning button</button>
+	    	<button type="button" class="btn btn-danger">This is a danger button</button>
+		</div>
+	</div>
+</body>
+</html>
